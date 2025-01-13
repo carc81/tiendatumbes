@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo.jpeg" alt="Company Logo">
+            <div>
+                <h1>Mi Tienda</h1>
+                <p class="description">Productos de calidad</p>
+            </div>
+        </div>
+        <div class="cart" onclick="toggleCart()">
+           <img src="img/car.png" alt="Carrito">
+           <span id="cart-counter" class="cart-counter">0</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <img src="img/split.jpeg" alt="Producto 1">
+                <h3>Split de Aire Acondicionado</h3>
+                <p><span class="price">S/ 1500.00</span> <span class="old-price">$300.00</span> <span class="discount-tag">-16%</span></p>
+                <button onclick="addToCart('Split de Aire Acondicionado', 1500.00, 16)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <img src="img/laptop.jpeg" alt="Producto 2">
+                <h3>Laptop Ultrabook</h3>
+                <p><span class="price">S/ 850.00</span> <span class="old-price">$1000.00</span> <span class="discount-tag">-15%</span></p>
+                <button onclick="addToCart('Laptop Ultrabook', 850.00, 15)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <img src="img/pc.jpeg" alt="Producto 3">
+                <h3>Computadora de Escritorio</h3>
+                <p><span class="price">S/ 450.00</span> <span class="old-price">$500.00</span> <span class="discount-tag">-10%</span></p>
+                <button onclick="addToCart('Computadora de Escritorio', 450.00, 10)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <img src="img/ssd.jpeg" alt="Producto 4">
+                <h3>Disco SSD 1TB</h3>
+                <p><span class="price">S/ 120.00</span> <span class="old-price">$150.00</span> <span class="discount-tag">-20%</span></p>
+                <button onclick="addToCart('Disco SSD 1TB', 120.00, 20)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <img src="img/televisor.jpeg" alt="Producto 5">
+                <h3>Televisor SONY</h3>
+                <p><span class="price">S/ 220.00</span> <span class="old-price">$150.00</span> <span class="discount-tag">-20%</span></p>
+                <button onclick="addToCart('Televisor SONY', 220.00, 20)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 6 -->
+            <div class="product-card">
+                <img src="img/sonido.jpeg" alt="Producto 6">
+                <h3>Equipo de Sonido</h3>
+                <p><span class="price">S/ 320.00</span> <span class="old-price">$150.00</span> <span class="discount-tag">-20%</span></p>
+                <button onclick="addToCart('Equipo de Sonido', 320.00, 20)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 7 -->
+            <div class="product-card">
+                <img src="img/data.jpeg" alt="Producto 7">
+                <h3>Data Show</h3>
+                <p><span class="price">S/ 540.00</span> <span class="old-price">$150.00</span> <span class="discount-tag">-20%</span></p>
+                <button onclick="addToCart('Data Show', 540.00, 20)">Agregar al Carrito</button>
+            </div>
+            <!-- Producto 8 -->
+            <div class="product-card">
+                <img src="img/ram.jpeg" alt="Producto 8">
+                <h3>Memoria Ram 16 GB</h3>
+                <p><span class="price">S/ 300.00</span> <span class="old-price">$150.00</span> <span class="discount-tag">-20%</span></p>
+                <button onclick="addToCart('Memoria Ram 16 GB', 300.00, 20)">Agregar al Carrito</button>
+            </div>
+        </div>
+    </main>
+
+<!-- Contenedor del modal -->
+<div id="cart-modal" class="modal">
+    <div id="cart-content">
+        <!-- Cabecera del modal -->
+        <div class="modal-header">
+            <span class="modal-header-text">Descripción del Carrito</span>
+        </div>
+        <button class="close-btn" onclick="closeCart()">X</button>
+        <div id="cart-items">
+            <!-- Plantilla de producto -->
+            <!--
+            <div class="cart-item">
+                <img src="ruta/de/imagen.jpg" alt="Producto">
+                <div class="cart-item-details">
+                    <span class="name">Nombre del Producto</span>
+                    <span class="price">Precio: $XX.XX</span>
+                    <span class="quantity">Cantidad: X</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromCart('Nombre del Producto')">Eliminar</button>
+            </div>
+            -->
+
+        </div>
+         <!-- Total del carrito -->
+         <div class="cart-total">Total: $0.00</div>
+        <!-- Pie del modal -->
+        <div class="cart-footer">
+         <!--<button onclick="generateOrder()">Generar orden</button>--> 
+         <button onclick="openPaymentModal()">Generar orden</button>  
+        </div>
+    </div>
+</div>
+<!-- Fondo oscuro para el modal -->
+<div id="cart-modal-overlay"></div>
+
+<!--Metodo de pago -->
+<div id="payment-modal" class="modalpago">
+    <div id="payment-content">
+        <div class="modalpago-header">
+            <h2>Confirmar Orden</h2>
+            <button class="close-btnpago" onclick="closePaymentModal()">X</button>
+        </div>
+        <div id="order-summary">
+            <!-- Aquí se listarán los productos del carrito -->
+        </div>
+        <div class="cart-totalpago">
+            <strong>Total a Pagar:</strong> <span id="total-payment">S/ 0.00</span>
+        </div>
+        <div class="modalpago-footer">
+            <button id="pay-button">Pagar con Mercado Pago</button>
+            <button id="print-button" onclick="printOrder()">Imprimir Orden</button>
+        </div>
+    </div>
+    <div id="payment-modal-overlay" class="modal-overlay"></div>
+</div>
+
+<!--Para el boton de watsapp-->
+<a href="https://web.whatsapp.com/send?phone=51987654321&text=¡Hola!%20Me%20gustaría%20hacer%20una%20consulta."
+   class="whatsapp-button" 
+   target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+   
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Somos una tienda comprometida con ofrecer los mejores productos y servicios a nuestros clientes.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <img src="img/facebook(1).png" alt="facebook">
+                    <img src="img/twitter.png" alt="Twitter">
+                    <img src="img/instagram.png" alt="Instagram">
+                    <img src="img/linked.png" alt="LinkedIn">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mi Tienda. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <div id="message-container"></div>
+    <script src="script.js"></script>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCounter(); // Llamar a la función después de que el DOM esté listo
+        });
+    </script>
+    
+</body>
+</html>
