@@ -24,7 +24,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 100px; /* Cambia este valor según tus necesidades */
+    height: 120px; /* Cambia este valor según tus necesidades */
     margin: 0;
     left: 0;
     right: 0;
@@ -43,8 +43,8 @@ header {
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -701,9 +701,18 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
+        flex-direction: column; /* Cambiar la dirección a columna */
+        height: auto; /* Dejar que la altura se ajuste automáticamente */
+        padding: 10px; /* Reducir el padding */
+    }
+    /* Ajustar elementos dentro del header */
+    header img {
+        max-width: 80%; /* Ajustar el tamaño del logo si lo tienes */
+        margin-bottom: 10px;
+    }
+
+    header nav {
+        display: none; /* Ocultar el menú por defecto */
     }
 
     .product-grid {
@@ -718,6 +727,15 @@ footer {
     #cart-content {
         width: 95%;  /* Ancho del modal ajustado para pantallas más pequeñas */
         max-height: 60vh;  /* Ajustar la altura máxima en pantallas más pequeñas */
+    }
+}
+
+/* Estilo para mostrar el menú cuando se haga clic */
+@media (max-width: 768px) {
+    header nav.active {
+        display: flex; /* Muestra el menú */
+        flex-direction: column;
+        align-items: center;
     }
 }
 
